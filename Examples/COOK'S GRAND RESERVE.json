@@ -1,0 +1,47 @@
+{
+  "ttb_id": "26155001000732",
+  "omb_number": "1513-0020",
+  "form_revision_date": "06-2016",
+  "status": "APPROVED",
+  "part_1_application": {
+    "field_1_rep_id_no": "",
+    "field_2_plant_registry_basic_permit_brewer_no": "BWN-CA-24914",
+    "field_3_source_of_product": "Domestic",
+    "field_4_serial_number": "266191",
+    "field_5_type_of_product": "WINE",
+    "field_6_brand_name": "COOK'S",
+    "field_7_fanciful_name": "GRAND RESERVE",
+    "field_8_applicant_details": {
+      "name": "TWG Woodbridge, THE WINE GROUP LLC",
+      "street": "5950 E WOODBRIDGE RD",
+      "city_state_zip": "Acampo CA 95220"
+    },
+    "field_8a_mailing_address": "",
+    "field_9_formula": "",
+    "field_10_grape_varietals": [
+      "N/A"
+    ],
+    "field_11_wine_appellation": "CALIFORNIA",
+    "field_12_phone_number": "(209) 599-4111",
+    "field_13_email_address": "",
+    "field_14_type_of_application": {
+      "certificate_of_label_approval": true,
+      "certificate_of_exemption": false,
+      "distinctive_liquor_bottle_approval": false,
+      "resubmission_after_rejection": false
+    },
+    "field_15_extra_information_translations": "ACAMPO: BOTTLE CODE WILL HAVE JULIAN LINEWOODBRIDGE DAYOFYEAR TIME (EX: LW062190106:12)\nNET CONTENT MAY OR MAY NOT BE BLOWN INTO THE CONTAINER."
+  },
+  "part_2_applicants_certification": {
+    "field_16_date_of_application": "06/04/2026",
+    "field_17_signature_placeholder": "(Application was e-filed)",
+    "field_18_print_name": "ANNE MARIE BELTRAN"
+  },
+  "ai_label_extraction_targets": {
+    "brand_name": "COOK'S",
+    "class_type": "SPARKLING WINE/CHAMPAGNE",
+    "alcohol_content": "",
+    "net_contents": "",
+    "government_warning": ""
+  }
+}

@@ -8,10 +8,10 @@ A modern, stateless, edge-proxied COLA (Certificate of Label Approval) verificat
 ## 1. COMPLIANCE CHECKLIST & DELIVERABLES
 
 This submission delivers the complete baseline source code files required for evaluation:
-- **[index.html](https://github.com/bryant360/TTB_Label/blob/main/index.html)**: The unified compliance panel layout (renamed from `index_2.html`), displaying the three-panel workspace.
-- **[app_3.js](https://github.com/bryant360/TTB_Label/blob/main/app_3.js)**: The core client-side orchestration thread controlling application states, sequential image queueing, edge latency tracking, and bounding box rendering.
-- **[styles.css](https://github.com/bryant360/TTB_Label/blob/main/styles.css)**: The responsive premium design system styling grid panel wrappers, administrative action bars, and glassmorphic tooltips.
-- **[src/validator.js](https://github.com/bryant360/TTB_Label/blob/main/src/validator.js)**: The statutory logic library executing compliance checks (CFR Title 27) for ABV tolerances, brand spelling alignment, and Surgeon General health warning capitalization and bolding regulations.
+- **[index.html](https://github.com/bryant360/TTB_Label/App/index.html)**: The unified compliance panel layout (renamed from `index_2.html`), displaying the three-panel workspace.
+- **[app_3.js](https://github.com/bryant360/TTB_Label/App/app_3.js)**: The core client-side orchestration thread controlling application states, sequential image queueing, edge latency tracking, and bounding box rendering.
+- **[styles.css](https://github.com/bryant360/TTB_Label/App/styles.css)**: The responsive premium design system styling grid panel wrappers, administrative action bars, and glassmorphic tooltips.
+- **[validator.js](https://github.com/bryant360/TTB_Label/App/validator.js)**: The statutory logic library executing compliance checks (CFR Title 27) for ABV tolerances, brand spelling alignment, and Surgeon General health warning capitalization and bolding regulations.
 
 ---
 
@@ -180,7 +180,7 @@ The TTB Label Assistant user interface is built as a three-panel responsive grid
 Evaluators can dynamically ingest new application assets directly from the top of the TTB Workload Triage sidebar:
 *   **"Upload Label Assets" Button**: Clicking this accepts physical label artwork files (e.g. PNG, JPEG, SVG) from the local system and inserts them dynamically into the Panel 2 interactive carousel explorer.
 *   **"Upload Form JSON" Button**: Clicking this allows evaluators to import structured form data contracts (adhering to TTB Form 5100.31 JSON schema schemas). The imported fields instantly populate the corresponding form rows and compliance controls inside Panel 3.
-*   **Demo Assets**: To test the verification flows with pre-prepared real-world examples, evaluators can download and use the assets located in the **[Examples/](https://github.com/bryant360/TTB_Label/tree/main/Examples)** directory of this repository.
+*   **Demo Assets**: To test the verification flows with pre-prepared real-world examples, evaluators can download and use the assets located in the **[Examples](https://github.com/bryant360/TTB_Label/Examples)** directory of this repository.
 
 ### 2. Interactive UX Verification (Panel 2 & 3 Synchronization)
 Once label assets are loaded:

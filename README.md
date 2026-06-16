@@ -178,8 +178,9 @@ The TTB Label Assistant user interface is built as a three-panel responsive grid
 
 ### 1. Workload Ingestion (Panel 1 Ingestion Buttons)
 Evaluators can dynamically ingest new application assets directly from the top of the TTB Workload Triage sidebar:
-*   **"Upload Label Assets" Button**: Clicking this accepts physical label artwork files (e.g. PNG, JPEG, SVG) from the local system and inserts them dynamically into the Panel 2 interactive carousel explorer.
-*   **"Upload Form JSON" Button**: Clicking this allows evaluators to import structured form data contracts (adhering to TTB Form 5100.31 JSON schema schemas). The imported fields instantly populate the corresponding form rows and compliance controls inside Panel 3.
+*   **"Upload Label Assets" Button**: Clicking this accepts physical label artwork files (e.g. PNG, JPEG, SVG) from the local system and inserts them dynamically into the Panel 2 interactive carousel explorer. Multiple images can be uploaded at the same time and will be processed via a queing system. Files are typically processed within 5 seconds.
+*   **"Upload Form JSON" Button**: Clicking this allows evaluators to import structured form data contracts (adhering to TTB Form 5100.31 JSON schema schemas). The imported fields instantly populate the corresponding form rows and compliance controls inside Panel 3. Only one form can be uploaded at a time.
+*   **Combining Labels and Forms": The application will automatically combine labels and forms together assuming that the file names match the brand.
 *   **Demo Assets**: To test the verification flows with pre-prepared real-world examples, evaluators can download and use the assets located in the **[Examples](https://github.com/bryant360/TTB_Label/blob/main/Examples)** directory of this repository.
 
 ### 2. Interactive UX Verification (Panel 2 & 3 Synchronization)
@@ -187,3 +188,9 @@ Once label assets are loaded:
 *   **Hover Highlights**: Move the mouse cursor over any active text block on the SVG label in Panel 2. The bounding box highlight outline will change from dashed amber to solid blue, and a floating custom HTML tooltip will render detailing the field friendly name and confidence score (e.g. `Brand Name (99%)` or `Alcohol Content (95%)`).
 *   **Auto-Focus Mapping**: Hovering/selecting a bounding box in Panel 2 automatically scrolls to and highlights the corresponding input field in Panel 3.
 *   **Two-Way Form Sync**: Clicking or focusing any input field in Panel 3 (e.g., "13. Alcohol Content") automatically flips the Panel 2 carousel view to the corresponding label asset type (e.g. BACK label) containing that field, and flashes its coordinate highlight box on the explorer layout.
+
+  ## Additional Features
+  There are still additional features that can be added based on agents' requirements. If time permits, the application might be modified to add these in. 
+
+  ## Thank You
+  Thank you for taking the time to review my application! This was a very fun and educational project to work on! I learned a lot with regards to how TT agents process these forms and more importantly how the labels on my favorite alcohol products get to the store. I even selected one of my local breweries as a test case. Thank you again for this opportunity!

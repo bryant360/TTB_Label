@@ -1,0 +1,47 @@
+{
+  "ttb_id": "25139001000164",
+  "omb_number": "1513-0020",
+  "form_revision_date": "06-2016",
+  "status": "APPROVED",
+  "part_1_application": {
+    "field_1_rep_id_no": "",
+    "field_2_plant_registry_basic_permit_brewer_no": "NY-I-15547",
+    "field_3_source_of_product": "Imported",
+    "field_4_serial_number": "250304",
+    "field_5_type_of_product": "WINE",
+    "field_6_brand_name": "JULES BRAISSOL",
+    "field_7_fanciful_name": "",
+    "field_8_applicant_details": {
+      "name": "ELENTENY IMPORTS, T. ELENTENY HOLDINGS, LLC",
+      "street": "285 W BROADWAY SUITE 500",
+      "city_state_zip": "NEW YORK NY 10013"
+    },
+    "field_8a_mailing_address": "",
+    "field_9_formula": "",
+    "field_10_grape_varietals": [
+      "Sauvignon Blanc"
+    ],
+    "field_11_wine_appellation": "SANCERRE",
+    "field_12_phone_number": "(646) 860-0012",
+    "field_13_email_address": "",
+    "field_14_type_of_application": {
+      "certificate_of_label_approval": true,
+      "certificate_of_exemption": false,
+      "distinctive_liquor_bottle_approval": false,
+      "resubmission_after_rejection": false
+    },
+    "field_15_extra_information_translations": ""
+  },
+  "part_2_applicants_certification": {
+    "field_16_date_of_application": "05/19/2025",
+    "field_17_signature_placeholder": "(Application was e-filed)",
+    "field_18_print_name": "Karen (Kas) Adams"
+  },
+  "ai_label_extraction_targets": {
+    "brand_name": "JULES BRAISSOL",
+    "class_type": "TABLE WHITE WINE",
+    "alcohol_content": "",
+    "net_contents": "",
+    "government_warning": ""
+  }
+}

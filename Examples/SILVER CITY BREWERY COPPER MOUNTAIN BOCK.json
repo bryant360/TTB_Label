@@ -1,0 +1,47 @@
+{
+  "ttb_id": "26055001000964",
+  "omb_number": "1513-0020",
+  "form_revision_date": "06-2016",
+  "status": "APPROVED",
+  "part_1_application": {
+    "field_1_rep_id_no": "",
+    "field_2_plant_registry_basic_permit_brewer_no": "BR-WA-21717",
+    "field_3_source_of_product": "Domestic",
+    "field_4_serial_number": "26SM09",
+    "field_5_type_of_product": "MALT BEVERAGE",
+    "field_6_brand_name": "SILVER CITY BREWERY",
+    "field_7_fanciful_name": "COPPER MOUNTAIN BOCK",
+    "field_8_applicant_details": {
+      "name": "SILVER CITY BREWERY, MAC & JACK'S BREWERY, INC.",
+      "street": "206 KATY PENMAN AVE",
+      "city_state_zip": "Bremerton WA 98312"
+    },
+    "field_8a_mailing_address": "",
+    "field_9_formula": "",
+    "field_10_grape_varietals": [
+      "N/A"
+    ],
+    "field_11_wine_appellation": "",
+    "field_12_phone_number": "(425) 558-9697",
+    "field_13_email_address": "",
+    "field_14_type_of_application": {
+      "certificate_of_label_approval": true,
+      "certificate_of_exemption": false,
+      "distinctive_liquor_bottle_approval": false,
+      "resubmission_after_rejection": false
+    },
+    "field_15_extra_information_translations": ""
+  },
+  "part_2_applicants_certification": {
+    "field_16_date_of_application": "02/24/2026",
+    "field_17_signature_placeholder": "(Application was e-filed)",
+    "field_18_print_name": "Seth McHone"
+  },
+  "ai_label_extraction_targets": {
+    "brand_name": "SILVER CITY BREWERY",
+    "class_type": "BEER",
+    "alcohol_content": "",
+    "net_contents": "",
+    "government_warning": ""
+  }
+}

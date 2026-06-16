@@ -1,0 +1,47 @@
+{
+  "ttb_id": "25252001000871",
+  "omb_number": "1513-0020",
+  "form_revision_date": "06-2016",
+  "status": "SURRENDERED",
+  "part_1_application": {
+    "field_1_rep_id_no": "",
+    "field_2_plant_registry_basic_permit_brewer_no": "CO-I-21312",
+    "field_3_source_of_product": "Imported",
+    "field_4_serial_number": "250105",
+    "field_5_type_of_product": "MALT BEVERAGE",
+    "field_6_brand_name": "CORONA",
+    "field_7_fanciful_name": "",
+    "field_8_applicant_details": {
+      "name": "Taco Rico Mexican Restaurant, Taco Rico Mexican Restaurant LLC",
+      "street": "3928 WADSWORTH BLVD",
+      "city_state_zip": "Wheat Ridge CO 80010"
+    },
+    "field_8a_mailing_address": "",
+    "field_9_formula": "",
+    "field_10_grape_varietals": [
+      "N/A"
+    ],
+    "field_11_wine_appellation": "",
+    "field_12_phone_number": "(720) 481-1604",
+    "field_13_email_address": "",
+    "field_14_type_of_application": {
+      "certificate_of_label_approval": true,
+      "certificate_of_exemption": false,
+      "distinctive_liquor_bottle_approval": false,
+      "resubmission_after_rejection": false
+    },
+    "field_15_extra_information_translations": ""
+  },
+  "part_2_applicants_certification": {
+    "field_16_date_of_application": "09/09/2025",
+    "field_17_signature_placeholder": "(Application was e-filed)",
+    "field_18_print_name": "Jose Ruiz Marquez"
+  },
+  "ai_label_extraction_targets": {
+    "brand_name": "CORONA",
+    "class_type": "BEER",
+    "alcohol_content": "",
+    "net_contents": "",
+    "government_warning": ""
+  }
+}

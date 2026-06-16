@@ -12,7 +12,7 @@ This submission delivers the complete baseline source code files required for ev
 - **[app_3.js](https://github.com/bryant360/TTB_Label/App/app_3.js)**: The core client-side orchestration thread controlling application states, sequential image queueing, edge latency tracking, and bounding box rendering.
 - **[styles.css](https://github.com/bryant360/TTB_Label/App/styles.css)**: The responsive premium design system styling grid panel wrappers, administrative action bars, and glassmorphic tooltips.
 - **[validator.js](https://github.com/bryant360/TTB_Label/App/validator.js)**: The statutory logic library executing compliance checks (CFR Title 27) for ABV tolerances, brand spelling alignment, and Surgeon General health warning capitalization and bolding regulations.
-
+- **[index.js](https://github.com/bryant360/TTB_Label/App/index.js)**: Serves as the entry point for the backend serverless microservice, hosted live on the **Cloudflare Workers** edge runtime platform. Operating within an **"Edge Ingestion, Client Evaluation"** architecture paradigm, this component serves strictly as a blind, stateless, pass-through API gateway.
 ---
 
 ## 2. DOCUMENTATION OF APPROACH & ARCHITECTURAL TOOLS

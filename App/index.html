@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TTB Label Assistant - Compliance Workspace</title>
+
+  <!-- Modern Typography from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <!-- Core Design System stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- Low-Profile Compliance Header -->
+  <header class="app-header">
+    <div class="header-logo">
+      <svg class="icon-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+      <span class="logo-text">TTB <span class="logo-sub">Label Assistant</span></span>
+    </div>
+    <div class="system-status">
+      <span class="status-indicator online"></span>
+      <span class="status-text">Stateless Edge Proxy: Online</span>
+      <button type="button" id="btn-trigger-429" class="btn-action-throttle"
+        style="margin-left: 12px; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: var(--status-fail); padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">Simulate
+        Throttle</button>
+    </div>
+  </header>
+
+  <!-- Circuit Breaker Caution Banner -->
+  <div id="circuit-breaker-banner" class="circuit-breaker-banner" style="display: none;"></div>
+
+  <!-- Main Workspace Grid Container -->
+  <main class="workspace-container">
+
+    <!-- PANEL 1: WORKLOAD TRIAGE SIDEBAR -->
+    <section class="panel panel-triage" id="panel-triage-sidebar" aria-label="Workload Triage Sidebar">
+      <div class="panel-header">
+        <h2>Workload Triage</h2>
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input type="text" id="triage-search" placeholder="Search TTB ID..." aria-label="Search applications">
+        </div>
+        <div class="filter-tabs">
+          <button class="filter-tab active" data-filter="all">All</button>
+          <button class="filter-tab" data-filter="AUTO_PASS">Auto Pass</button>
+          <button class="filter-tab" data-filter="WARN">Warn</button>
+          <button class="filter-tab" data-filter="FAIL">Fail</button>
+        </div>
+        <div class="ingestion-controls">
+          <input type="file" id="input-upload-assets" accept=".jpg,.jpeg,.png,.tiff,.bmp,image/*" multiple
+            style="display: none;">
+          <input type="file" id="input-upload-form" accept=".json" style="display: none;">
+          <button type="button" class="btn-ingest" id="btn-upload-assets">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
+            Upload Label Assets
+          </button>
+          <button type="button" class="btn-ingest" id="btn-upload-form">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+            </svg>
+            Upload Form JSON
+          </button>
+        </div>
+      </div>
+
+      <div class="panel-content triage-list" id="triage-list-container">
+        <!-- Application items populated dynamically by app.js -->
+        <div class="loading-state">Loading applications...</div>
+      </div>
+    </section>
+
+    <!-- PANEL 2: INTERACTIVE LABEL EXPLORER VIEWPORT -->
+    <section class="panel panel-explorer" id="panel-label-explorer" aria-label="Interactive Label Explorer Viewport">
+      <div class="panel-header">
+        <h2>Label Explorer</h2>
+        <div class="carousel-controls">
+          <button class="btn-carousel" id="carousel-prev" aria-label="Previous Label">←</button>
+          <span class="carousel-indicator" id="carousel-label-type">FRONT LABEL</span>
+          <button class="btn-carousel" id="carousel-next" aria-label="Next Label">→</button>
+        </div>
+      </div>
+
+      <div class="panel-content explorer-viewport">
+        <!-- Pinned Performance Metrics HUD -->
+        <div class="metrics-hud" id="metrics-hud-card">
+          <div class="metric-item">
+            <span class="metric-label">Edge Latency</span>
+            <span class="metric-value" id="hud-latency">-- ms</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-item">
+            <span class="metric-label">Clarity Score</span>
+            <span class="metric-value" id="hud-clarity">--%</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-item">
+            <span class="metric-label">Legibility Mode</span>
+            <span class="metric-value" id="hud-override">--</span>
+          </div>
+        </div>
+
+        <!-- Central Image/SVG Display Panel -->
+        <div class="image-display-container">
+          <div class="label-view-box" id="label-view-box-container">
+            <!-- Dynamic Vector Labels Rendered as Premium inline SVGs by app.js -->
+            <div class="label-wrapper" id="active-label-wrapper">
+              <!-- Inline SVG Label Content goes here -->
+            </div>
+
+            <!-- Absolute Positioning CSS overlay for coordinate bounds -->
+            <div class="coordinate-overlay-container" id="coordinate-overlay">
+              <!-- Overlay bounding box elements populated dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANEL 3: TTB FORM 5100.31 CONTAINER -->
+    <section class="panel panel-form" id="panel-form-container" aria-label="TTB Form 5100.31 Container">
+      <div class="panel-header">
+        <h2>TTB Form 5100.31</h2>
+        <span class="form-sub-header">Application for Label Approval</span>
+      </div>
+
+      <div class="panel-content form-scroller">
+        <form id="cola-compliance-form" class="compliance-form" onsubmit="event.preventDefault();">
+
+          <div class="form-grid">
+            <!-- TTB ID -->
+            <div class="form-field full-width" data-field-id="ttb_id">
+              <label for="ttb_id_input">TTB ID (14-Digit Application ID)</label>
+              <input type="text" id="ttb_id_input" name="ttb_id" readonly style="opacity: 0.8; cursor: not-allowed;">
+            </div>
+
+            <!-- 1. Rep ID -->
+            <div class="form-field" data-field-id="field_1_rep_id_no">
+              <label for="field_1_rep_id_no">1. Rep. ID No. (If any)</label>
+              <input type="text" id="field_1_rep_id_no" name="field_1_rep_id_no" placeholder="e.g. 999">
+            </div>
+
+            <!-- 2. Plant Registry -->
+            <div class="form-field" data-field-id="field_2_plant_registry_basic_permit_brewer_no">
+              <label for="field_2_plant_registry_basic_permit_brewer_no">2. Plant Registry/Basic Permit/Brewer's
+                No.</label>
+              <input type="text" id="field_2_plant_registry_basic_permit_brewer_no"
+                name="field_2_plant_registry_basic_permit_brewer_no" placeholder="e.g. BW-CA-12345">
+            </div>
+
+            <!-- 3. Source of Product -->
+            <div class="form-field" data-field-id="field_3_source_of_product">
+              <label for="field_3_source_of_product">3. Source of Product</label>
+              <select id="field_3_source_of_product" name="field_3_source_of_product">
+                <option value="Domestic">Domestic</option>
+                <option value="Imported">Imported</option>
+              </select>
+            </div>
+
+            <!-- 4. Serial Number -->
+            <div class="form-field" data-field-id="field_4_serial_number">
+              <label for="field_4_serial_number">4. Serial Number</label>
+              <input type="text" id="field_4_serial_number" name="field_4_serial_number" placeholder="e.g. 210001">
+            </div>
+
+            <!-- 5. Type of Product -->
+            <div class="form-field full-width" data-field-id="field_5_type_of_product">
+              <label for="field_5_type_of_product">5. Type of Product</label>
+              <select id="field_5_type_of_product" name="field_5_type_of_product">
+                <option value="WINE">WINE</option>
+                <option value="DISTILLED SPIRITS">DISTILLED SPIRITS</option>
+                <option value="MALT BEVERAGE">MALT BEVERAGE</option>
+              </select>
+            </div>
+
+            <!-- 6. Brand Name -->
+            <div class="form-field full-width" data-field-id="field_6_brand_name">
+              <label for="field_6_brand_name">6. Brand Name</label>
+              <input type="text" id="field_6_brand_name" name="field_6_brand_name"
+                placeholder="Extracted brand name...">
+            </div>
+
+            <!-- 7. Fanciful Name -->
+            <div class="form-field full-width" data-field-id="field_7_fanciful_name">
+              <label for="field_7_fanciful_name">7. Fanciful Name (If any)</label>
+              <input type="text" id="field_7_fanciful_name" name="field_7_fanciful_name"
+                placeholder="Extracted fanciful name...">
+            </div>
+
+            <!-- 8. Name & Address of Applicant -->
+            <div class="form-field full-width" data-field-id="field_8_applicant_details">
+              <label for="field_8_applicant_details">8. Name & Address of Applicant</label>
+              <textarea id="field_8_applicant_details" name="field_8_applicant_details" rows="3"
+                placeholder="Extracted name and address..."></textarea>
+            </div>
+
+            <!-- 8a. Mailing Address -->
+            <div class="form-field full-width" data-field-id="field_8a_mailing_address">
+              <label for="field_8a_mailing_address">8a. Mailing Address (If different)</label>
+              <textarea id="field_8a_mailing_address" name="field_8a_mailing_address" rows="2"
+                placeholder="Mailing address if different..."></textarea>
+            </div>
+
+            <!-- 9. Formula -->
+            <div class="form-field" data-field-id="field_9_formula">
+              <label for="field_9_formula">9. Formula</label>
+              <input type="text" id="field_9_formula" name="field_9_formula" placeholder="e.g. 19-1234">
+            </div>
+
+            <!-- 10. Grape Varietal(s) -->
+            <div class="form-field" data-field-id="field_10_grape_varietals">
+              <label for="field_10_grape_varietals">10. Grape Varietal(s) (Wine only)</label>
+              <input type="text" id="field_10_grape_varietals" name="field_10_grape_varietals"
+                placeholder="e.g. Cabernet Sauvignon">
+            </div>
+
+            <!-- 11. Wine Appellation -->
+            <div class="form-field" data-field-id="field_11_wine_appellation">
+              <label for="field_11_wine_appellation">11. Wine Appellation (If on label)</label>
+              <input type="text" id="field_11_wine_appellation" name="field_11_wine_appellation"
+                placeholder="e.g. Napa Valley">
+            </div>
+
+            <!-- 12. Phone Number -->
+            <div class="form-field" data-field-id="field_12_phone_number">
+              <label for="field_12_phone_number">12. Phone Number</label>
+              <input type="text" id="field_12_phone_number" name="field_12_phone_number"
+                placeholder="e.g. (707) 555-0199">
+            </div>
+
+            <!-- 13. Email Address -->
+            <div class="form-field" data-field-id="field_13_email_address">
+              <label for="field_13_email_address">13. Email Address</label>
+              <input type="text" id="field_13_email_address" name="field_13_email_address"
+                placeholder="e.g. compliance@winery.com">
+            </div>
+
+            <!-- 14. Type of Application -->
+            <div class="form-field full-width" data-field-id="field_14_type_of_application">
+              <label for="field_14_type_of_application">14. Type of Application</label>
+              <input type="text" id="field_14_type_of_application" name="field_14_type_of_application"
+                placeholder="e.g. Certificate of Label Approval (COLA)">
+            </div>
+
+            <!-- 15. Extra Information / Translations -->
+            <div class="form-field full-width" data-field-id="field_15_extra_info">
+              <label for="field_15_extra_info">15. Extra Information / Translations</label>
+              <textarea id="field_15_extra_info" name="field_15_extra_info" rows="2"
+                placeholder="e.g. English translation of foreign terms..."></textarea>
+            </div>
+
+            <!-- 16. Date of Application -->
+            <div class="form-field" data-field-id="field_16_date_of_application">
+              <label for="field_16_date_of_application">16. Date of Application</label>
+              <input type="text" id="field_16_date_of_application" name="field_16_date_of_application"
+                placeholder="e.g. 2023-10-15">
+            </div>
+
+            <!-- 17. Signature of Applicant -->
+            <div class="form-field" data-field-id="field_17_signature">
+              <label for="field_17_signature">17. Signature of Applicant</label>
+              <input type="text" id="field_17_signature" name="field_17_signature" placeholder="Signature on file"
+                readonly style="opacity: 0.8; cursor: not-allowed;">
+            </div>
+
+            <!-- 18. Printed Name of Applicant -->
+            <div class="form-field full-width" data-field-id="field_18_printed_name">
+              <label for="field_18_printed_name">18. Printed Name of Applicant</label>
+              <input type="text" id="field_18_printed_name" name="field_18_printed_name" placeholder="Printed name...">
+            </div>
+
+            <!-- Government Warning -->
+            <div class="form-field full-width" data-field-id="field_government_warning">
+              <label for="field_government_warning">Government Warning Statement</label>
+              <textarea id="field_government_warning" name="field_government_warning" rows="8"
+                placeholder="Extracted government warning statement..."></textarea>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Docked Administrative Action Bar -->
+      <footer class="admin-action-bar">
+        <div class="override-checkbox-container" id="override-container" style="display: none;">
+          <input type="checkbox" id="override-clarity-checkbox" name="override_clarity">
+          <label for="override-clarity-checkbox">Override Clarity Check</label>
+        </div>
+        <button type="button" class="btn btn-action-reject" id="btn-reject">Reject Application</button>
+        <button type="button" class="btn btn-action-correct" id="btn-correct">Send for Correction</button>
+        <button type="button" class="btn btn-action-approve" id="btn-approve">Approve Application</button>
+      </footer>
+    </section>
+
+  </main>
+
+  <!-- Toast Notification Overlay -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Load Front-End Logic -->
+  <script src="validator.js"></script>
+  <script src="app_3.js"></script>
+</body>
+
+</html>
